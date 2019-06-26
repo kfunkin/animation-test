@@ -1,0 +1,268 @@
+html {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #f2f1ef;
+  height: 100vh;
+  width: 100vw;
+  font-family: helvetica, sans-serif;
+  margin: 0;
+
+}
+
+mark {
+  background-color: #212121;
+  color: #f2f1ef;
+}
+
+container-fluid {
+  width: 100vw;
+  height: 100vh;
+}
+
+/*INTRO SCREEN*************************************************************************************************************/
+#intro-screen {
+  background-color: #212121;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+
+
+
+
+
+
+
+
+/*SCENE 1*****************************************************************************************************************/
+
+#scene1 {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+#tomsk-ext {
+  position: absolute;
+  top:0;
+  left:-100px;
+  z-index: 2;
+  /*animation: tomsk-ext-anim 3s ease-in;*/
+  /*animation-fill-mode: forwards;*/
+}
+
+@keyframes tomsk-ext-anim {
+  0% {
+    left: -100px;
+    transform:scale(1);
+  }
+
+  80% {
+    opacity: 1;
+}
+
+  100% {
+    left: -300px;
+    transform:scale(1.3);
+    opacity: 0.5;
+  }
+}
+
+#big-stripes {
+  position: relative;
+  top: 0;
+  left: 0;
+  mix-blend-mode: darken;
+  z-index: 1;
+  opacity: 0.7;
+  overflow: hidden;
+  /*animation: big-stripes-anim 3s ease-in;*/
+  /*animation-fill-mode: forwards;*/
+}
+@keyframes big-stripes-anim {
+  0% {
+    left: 0px;
+    top:0;
+    z-index: 1;
+  }
+  80% {
+    opacity: 0.7;
+  }
+  100% {
+    left: -100px;
+    opacity: 0;
+  }
+}
+#tomsk-blk-txt {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  mix-blend-mode: darken;
+  z-index: 4;
+  opacity: 0;
+  transform: scale(1.5);
+  /*animation-delay: 4s;*/
+  /*animation: tomsk-blk-anim 2s ease-in infinite;*/
+}
+@keyframes tomsk-blk-anim {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#tomsk-pnk-txt {
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  transform: scale(2);
+  mix-blend-mode: darken;
+  z-index: 5;
+  /*animation: tomsk-pnk-anim 2s ease-in;*/
+  /*animation-fill-mode: forwards;*/
+}
+@keyframes tomsk-pnk-anim {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0
+  }
+}
+/*SCENE 2*****************************************************************************************************************/
+#scene2 {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+}
+
+#studio-left {
+  position: relative;
+  left:-100px;
+  top: 0px;
+  mix-blend-mode: darken;
+  overflow:hidden;
+  transform:scale(0.8);
+  z-index: 2;
+}
+
+#blue-circle {
+  position:absolute;
+  left: 20%;
+  top: -40px;
+  mix-blend-mode: darken;
+  z-index: 1;
+  opacity: 0;
+}
+
+/*#blue-circle.show {
+  animation: blue-circle-anim 2s linear infinite;
+}*/
+
+@keyframes blue-circle-anim {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#marathead{
+  position:absolute;
+  right: 50%;
+  top: -50px;
+  mix-blend-mode: darken;
+  transform:scale(0.8);
+  animation: marat-head-anim 2s linear infinite;
+}
+
+
+#maratbody{
+  position: absolute;
+  top: 65px;
+  right: 35%;
+  mix-blend-mode: darken;
+  transform:scale(0.8);
+}
+
+
+/*SCENE3**************************************************************************************************************/
+#scene3 {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: #212121;
+
+}
+
+/*@keyframes marat-head-anim {
+  0% {
+    top: -50px;
+    left: 200px;
+  }
+  20% {
+    top: -51px;
+    left: 199px;
+  }
+  40% {
+    top: -49px;
+    left: 201px;
+  }
+  60% {
+    top: -50px;
+    left: 200px;
+  }
+  80% {
+    top: -51px;
+    left: 201px;
+  }
+  100% {
+    top: -49px;
+    left: 199px;
+  }
+}*/
+
+
+
+/*SMALL DEVICES (LANDSCAPE PHONES, 576PX AND UP)*/
+/*@media screen and (max-width: 400px){
+  #studio-left {
+    transform:scale(0.6);
+    left: -170px;
+  }
+}
+
+/*MEDIUM DEVICES (TABLETS, 768 AND UP)*/
+/*@media (min-width: 768px){
+
+}
+/*LARGE DEVICES (DESKTOPS, 992PX AND UP)*/
+/*@media (min-width: 992px){
+
+}
+
+/*EXTRA LARGE DEVICES (LARGE DESKTOPS, 1200PX AND UP)*/
+/*@media (min-width: 1200px){
+
+}
