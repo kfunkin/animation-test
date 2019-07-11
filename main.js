@@ -1,48 +1,141 @@
-let intro = document.querySelector("#intro-screen");
-let scene1 = document.querySelector("#scene1");
-let tomsk = document.querySelector("#tomsk-ext");
-let bigstripes = document.querySelector("#big-stripes");
-let tomskblktxt = document.querySelector("#tomsk-blk-txt");
-let tomskpnktxt = document.querySelector("#tomsk-pnk-txt");
-let audio = document.querySelector("#groove");
+
+//BUTTONS!////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+let playSectionOne = document.querySelector("#section1BtnBck");
+let toSectionTwo = document.querySelector("#section1BtnFwd");
+let backToSectionOne = document.querySelector("#section2BtnBck");
+let toSectionThree = document.querySelector("#section2BtnFwd");
+let backToSectionTwo = document.querySelector("#section3BtnBck");
+let toSectionFour = document.querySelector("#section3BtnFwd");
 
 
 
-intro.addEventListener("click", function()  {
-  window.scrollTo({
-    top: document.querySelector('#scene1').offsetTop,
-    behavior: "smooth"
-  })
-  audio.play();
-  tomsk.style.animation = "tomsk-ext-anim 3s ease-in";
-  tomsk.style.animationFillMode = "forwards";
-  bigstripes.style.animation = "big-stripes-anim 3s ease-in";
-  bigstripes.style.animationFillMode = "forwards";
-  tomskblktxt.style.animationDelay = "2s";
-  tomskblktxt.style.animation = "tomsk-blk-anim 2s ease-in";
-  tomskblktxt.style.animationFillMode = "forwards";
-  tomskpnktxt.style.animation = "tomsk-pnk-anim 2s ease-in";
-  tomskpnktxt.style.animationFillMode = "forwards";
+//DECLARE TIMELINES HERE*******************************************************************************************
+
+var sceneOneTL = new TimelineMax({
+  //functions in here!
+  paused: false
 });
 
-let scene2 = document.querySelector("#scene2");
-let blueCircle = document.querySelector("#blue-circle");
-
-
-scene1.addEventListener("click", function() {
-  window.scrollTo({
-    top: document.querySelector('#scene2').offsetTop,
-    behavior: "smooth"
-  })
-  blueCircle.style.animation = "blue-circle-anim 2s linear infinite";
+var sceneTwoTL = new TimelineMax({
+	paused: true
 });
 
-let scene3 = document.querySelector("#scene3");
+var sceneThreeTL = new TimelineMax({
+  paused: true
+});
 
-scene2.addEventListener("click", function() {
+
+//DECLARE AUDIO HERE!///////////////////////////////////////////////////////////////////////////////////////
+
+var thisTime = new Howl({
+  src: ["assets/this-time.mp3"]
+});
+
+var funkComrades = new Howl({
+  src: ["assets/FunkComrades.mp3"]
+});
+
+
+
+
+//SECTION1 GSAP TIMELINE... LET'S SEE HOW IT COMPARES TO CSS...
+
+
+Draggable.create("#section1BtnFwd", {
+	type:"y",
+	//bounds: document.getElementById("#tomsk"),
+	/*onClick:function() {
+		console.log("clicked");
+	},
+	onDragEnd:function() {
+		console.log("drag ended");
+	}*/
+});
+
+
+sceneOneTL.to("#tomsk", 8, {x: -800, ease: Back.easeOut.config(1.7)})
+          .to("#big-stripes", 10, {x: -100, ease: Back.easeOut}, "-=5")
+          .to("#tomsk-txt", 5, {opacity:"1", ease: Back.easeOut}, "-=10")
+          .to("#tomsk", 10, {scale: 3, ease: ExpoScaleEase.config(1, 3)}, "-=10")
+          .to("#tomsk-txt", 3, {opacity:"0", ease: Back.easeOut}, "-=3")
+          .to("#tomsk", 5, {opacity:"0", ease: Back.easeOut}, "-=3")
+          .to("#big-stripes", 8, {opacity:"0", ease: Back.easeOut}, "-=3")
+          .to("#section1BtnFwd", 5, {opacity:"1"}, "-=7")
+					.to("#logo-1", 3, {opacity: "1", }, "-=8");
+
+
+
+thisTime.play();
+
+/*playSectionOne.addEventListener('click', function(){
+  sceneOneTL.play();
+  thisTime.play();
+});*/
+
+toSectionTwo.addEventListener('click', function() {
   window.scrollTo({
-    top: document.querySelector('#scene3').offsetTop,
+    top: document.querySelector('#sectionTwo').offsetTop,
     behavior: "smooth"
+  });
+  thisTime.stop();
+  sceneOneTL.stop();
+	sceneTwoTL.restart();
+});
 
-  })
+
+//SECTION2 !!///////////////////////////////////////////////////////////////////////////////////////////////
+backToSectionOne.addEventListener('click', function(){
+  window.scrollTo({
+    top: document.querySelector('#sectionOne').offsetTop,
+    behavior: "smooth"
+  });
+  sceneOneTL.restart();
+  thisTime.play();
+	sceneTwoTL.stop();
+
+});
+
+
+
+sceneTwoTL.to("#alexei-head", 0.5, {rotation: "-=20"})
+					.to("#alexei-d2", 1, {opacity: 1})
+					.to("#blue-circle", 1, {opacity: 0.5})
+					.to("#section2BtnBck", 1, {opacity: 1})
+          .to("#section2BtnFwd", 1, {opacity: 1});
+					//.to("#yaroslav-body", 1, )
+					//animate yaroslav hiding behind button
+
+
+toSectionThree.addEventListener('click', function() {
+  window.scrollTo({
+    top: document.querySelector('#sectionThree').offsetTop,
+    behavior: "smooth"
+  });
+  sceneTwoTL.stop();
+  funkComrades.play();
+});
+
+//SECTION3//////////////////////////////////////////////////////////////////////////////////////////////////////
+backToSectionTwo.addEventListener('click', function() {
+  window.scrollTo({
+    top: document.querySelector('#sectionTwo').offsetTop,
+    behavior: "smooth"
+  });
+  sceneTwoTL.restart();
+  sceneThreeTL.stop();
+  funkComrades.stop();
+});
+
+//USE MUDDYFUNK GROOVE WITH BEN FOR FUNK COMRADES!
+
+//sceneThreeTL.to({});
+
+
+toSectionFour.addEventListener('click', function(){
+  window.scrollTo({
+    top: document.querySelector('#sectionFour').offsetTop,
+    behavior: "smooth"
+  });
+  sceneThreeTL.stop();
 });
