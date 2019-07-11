@@ -20,7 +20,7 @@ body {
 
 @font-face {
   font-family: molot;
-  src: url(assets/molot.otf)
+  src: url(assets/Molot-webfont.woff);
 }
 
 .row {
